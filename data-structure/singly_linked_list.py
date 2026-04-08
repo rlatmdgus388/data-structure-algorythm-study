@@ -4,6 +4,7 @@ class Node():
         self.data = None
         self.link = None
         
+        
 def printNodes(start):          # 노드 출력 함수
     current = start
     if current == None:
@@ -13,6 +14,7 @@ def printNodes(start):          # 노드 출력 함수
         current = current.link
         print(current.data, end = ' ')
     print()
+
 
 def insertNode(findData, insertData):
     global memory, head, current, pre
@@ -41,6 +43,7 @@ def insertNode(findData, insertData):
     node.data = insertData
     current.link = node
 
+
 def deleteNode(deleteData):
     global memory, head, current, pre
     
@@ -59,6 +62,30 @@ def deleteNode(deleteData):
             del(current)
             return
         
+# 검사 후 이동(마지막 노드 검사 못함)
+def findNode(findData):
+    global memory, head, current, pre
+    
+    current = head
+    while current.link != None:
+        if current.data == findData:
+            return current
+        else:
+            current = current.link
+
+
+# 이동 후 검사(전 노드 검사 가능)
+def findNode(findData):
+    global memory, head, current, pre
+    
+    current = head
+    if current.data == findData:
+        return current
+    while current.link != None:
+        current = current.link
+        if current.data == findData:
+            return current
+    return Node()
 
 
 memory = []     # 전역 변수 선언
