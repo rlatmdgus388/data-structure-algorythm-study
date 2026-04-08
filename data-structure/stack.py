@@ -24,7 +24,7 @@ def isStackEmpty():
     
 def push(data):
     global SIZE, stack, top
-    if isStackFull:
+    if isStackFull():
         print("스택이 꽉 찼습니다.")
         return
     top += 1
@@ -33,7 +33,7 @@ def push(data):
 
 def pop():
     global SIZE, stack, top
-    if isStackEmpty:
+    if isStackEmpty():
         print("스택이 비었습니다.")
         return
     data = stack[top]
