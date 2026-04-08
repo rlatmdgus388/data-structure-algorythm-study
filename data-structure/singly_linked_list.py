@@ -26,7 +26,7 @@ def insertNode(findData, insertData):
         
     # 중간 노드에 삽입하는 경우
     current = head
-    while current.link == None:
+    while current.link != None:
         pre = current
         current = current.link
         if current.data == findData:
