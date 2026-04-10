@@ -50,7 +50,7 @@ def peek():
     if (isQueueEmpty()):
         print("큐가 비었습니다.")
         return None
-    return queue[(front + 1) % SIZE]
+    return queue[front + 1]
 
 
 # 전역 변수 선언
@@ -68,17 +68,14 @@ if __name__ == "__main__":
             data = input("입력할 데이터: ")
             enQueue(data)
             print("큐 상태: ", queue)
-            print(f"front: {front}, rear: {rear}")
         elif (select == 'E'):
             data = deQueue()
             print("추출된 데이터: ", data)
             print("큐 상태", queue)
-            print(f"front: {front}, rear: {rear}")
         elif (select == 'V'):
             data = peek()
             print("확인된 데이터", data)
             print("큐 상태", queue)
-            print(f"front: {front}, rear: {rear}")
         else:
             print("입력이 잘못됨.")
             
