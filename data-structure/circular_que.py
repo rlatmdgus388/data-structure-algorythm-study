@@ -1,24 +1,18 @@
-# 큐: 입구와 출구가 따로 있는 원통 형태. 먼저 온 사람이 먼저 나가는 FIFO(First In First Out) 구조이다.
-# enQueue: 데이터 삽입, deQueue: 데이터 추출
+# 원형 큐: 큐의 처음과 끝이 연결된 구조. 한 줄에 차례대로 데이터가 입, 출력되는 순차 큐보다 효율적
+# 순차 큐처럼 배열로 구현하되 큐의 끝에 다다르면 다시 처음으로 이어지게 연결
+# 순차 큐는 데이터를 삭제 후 삽입할 시 데이터들을 앞으로 옮겨야하는 비효율 발생. 이에 대한 대안이 원형 큐이다.
 
 
 def isQueueFull():
-    global SIZE, queue, front, rear
-    if (rear != SIZE - 1):
-        return False
-    elif ((rear== SIZE - 1) and (front == -1)):
+    global SIZE, rear, front, queue
+    if ((rear+1) % SIZE == front):
         return True
     else:
-        for i in range(front+1, SIZE):
-            queue[i-1] = queue[i]
-            queue[i] = None
-        front -= 1
-        rear -= 1
         return False
     
-
+    
 def isQueueEmpty():
-    global SIZE, queue, front, rear
+    global SIZE, rear, front, queue
     if (front == rear):
         return True
     else:
@@ -30,7 +24,7 @@ def enQueue(data):
     if(isQueueFull()):
         print("큐가 꽉 찼습니다.")
         return
-    rear += 1
+    rear = (rear + 1) % SIZE
     queue[rear] = data
     
     
@@ -39,7 +33,7 @@ def deQueue():
     if (isQueueEmpty()):
         print("큐가 비었습니다.")
         return None
-    front += 1
+    front = (front + 1) % SIZE
     data = queue[front]
     queue[front] = None
     return data
@@ -82,3 +76,18 @@ if __name__ == "__main__":
         select = input("삽입(I) / 추출(E) / 확인(V) / 종료(X) 중 하나를 선택: ").upper()
         
     print("프로그램 종료")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+# 전역 변수 선언
+SIZE = 100
+queue = [None for _ in range(SIZE)]
+rear = front = 0
