@@ -79,18 +79,3 @@ if __name__ == "__main__":
         select = input("삽입(I) / 추출(E) / 확인(V) / 종료(X) 중 하나를 선택: ").upper()
         
     print("프로그램 종료")
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-# 전역 변수 선언
-SIZE = 100
-queue = [None for _ in range(SIZE)]
-rear = front = 0
