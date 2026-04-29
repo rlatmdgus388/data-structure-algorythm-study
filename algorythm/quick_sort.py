@@ -68,7 +68,7 @@ def quick_sort(array):
     left_side = [x for x in tail if x <= pivot]    # 피벗보다 작은 원소들을 리스트에 담음.
     right_side = [x for x in tail if x > pivot]    # 피벗보다 큰 원소들을 리스트에 담음.
     
-    return quick_sort(left_side) + [pivot] + quick_sort(right_side)
+    return quick_sort(left_side) + [pivot] + quick_sort(right_side)     # 재귀적으로 정렬된 왼쪽 리스트 + 피벗 원소 + 오른쪽 리스트
 
 print(quick_sort(array))
 
