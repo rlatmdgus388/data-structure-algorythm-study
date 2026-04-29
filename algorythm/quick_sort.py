@@ -40,17 +40,17 @@ def quick_sort(array, start, end):
     pivot = start   # 피벗은 첫 번째 원소
     left = start + 1
     right = end
-    while (left <= right):
-        while (left <= end and array[left] <= array[pivot]):
-            left += 1
-        while (right > start and array[right] >= array[pivot]):
-            right -= 1
-        if (left > right):
-            array[right], array[pivot] = array[pivot], array[right]
+    while (left <= right):  # 왼쪽 원소 인덱스가 오른쪽 원소 인덱스랑 같거나 작을때 계속 반복
+        while (left <= end and array[left] <= array[pivot]):    # 왼쪽 원소 인덱스가 배열의 끝에 도달하기 전 and 피벗값보다 작은 경우: 오른쪽으로 이동
+            left += 1                                           # 원쪽 원소가 피벗값보다 크면 반복문 탈출
+        while (right > start and array[right] >= array[pivot]): # 오른쪽 원소 인덱스가 피벗 인덱스보다 큰 경우 and 피벗값보다 큰 경우: 왼쪽으로 이동
+            right -= 1                                          # 오른쪽 원소가 피벗값보다 작은 경우 반복문 탈출
+        if (left > right):      # 왼쪽 원소 인덱스가 오른쪽 원소 인덱스보다 큰 경우 = 원소가 교차한 경우
+            array[right], array[pivot] = array[pivot], array[right]     # 두 원소중 작은 값을 피벗값과 교체
         else:
-            array[left], array[right] = array[right], array[left]
-    quick_sort(array, start, right - 1)          
-    quick_sort(array, right + 1, end)
+            array[left], array[right] = array[right], array[left]   # 다 아닌경우 퀵정렬 수행 = 왼쪽 원소와 오른쪽 원소 위치 교체
+    quick_sort(array, start, right - 1) # 두 그룹으로 나뉜 상태 -> 두 그룹을 재귀적으로 퀵정렬 수행.
+    quick_sort(array, right + 1, end)   # 퀵정렬은 무조건 인덱스가 교차하는 지점이 생김. 따라서 오른쪽 인덱스 값은 초기 피벗값이 됨.       
     
 quick_sort(array, 0, len(array) - 1)
 print(array)
@@ -65,10 +65,10 @@ def quick_sort(array):
     pivot = array[0]
     tail = array[1:]
     
-    left_side = [x for x in tail if x <= pivot]
-    right_side = [x for x in tail if x > pivot]
+    left_side = [x for x in tail if x <= pivot]    # 피벗보다 작은 원소들을 리스트에 담음.
+    right_side = [x for x in tail if x > pivot]    # 피벗보다 큰 원소들을 리스트에 담음.
     
-    return quick_sort(left_side + [pivot] + quick_sort(right_side))
+    return quick_sort(left_side) + [pivot] + quick_sort(right_side)
 
 print(quick_sort(array))
 
