@@ -26,3 +26,24 @@
 
 
 
+
+# 1. 배열 A와 배열 B를 각각 정렬
+# 2. 배열 A에서 가장 작은 원소와 배열 B에서 가장 큰 원소 하나씩 선택 후 서로 바꿈
+# 시간 복잡도가 O(N^2)일 경우, 100,000 ^ 2 = 10,000,000,000 의 계산량이 됨. 그럼 2초를 초과하므로 더 빠른 알고리즘으로 해결해야함.
+
+
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# O(NlongN)인 기본 라이브러리로 정렬
+a.sort()
+b.sort(reverse=True)
+
+for i in range(k): 
+    if a[i] < b[i]:
+        a[i], b[i] = b[i], a[i]
+    else:   # A의 원소가 B 원소 보다 클 경우, 더 이상 바꿀 필요가 없으니 반복문 탈출
+        break
+
+print(sum(a))
