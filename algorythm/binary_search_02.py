@@ -15,6 +15,7 @@
 
 
 # 파라매트릭 서치(parametric search)
+# 절단기의 높이는 0 ~ 10억 정수 중 하나 -> 이렇게 큰 탐색 범위를 보면 가장 먼저 이진 탐색을 떠올려야함.
 n, m = map(int, input().split())
 array = list(map(int, input().split()))
 
